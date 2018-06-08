@@ -1,0 +1,71 @@
+version: '3.3'
+services:
+  es_master1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    container_name: es_master1
+    environment:
+      - cluster.name=test_cluster
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms600m -Xmx600m -Xmn200m -XX:MaxMetaspaceSize=100m"
+      - node.master=true
+      - node.data=false
+      - node.ingest=false
+    ports:
+      - 9200:9200
+    networks:
+      - esnet
+  es_data1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    container_name: es_data1
+    environment:
+      - cluster.name=test_cluster
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms600m -Xmx600m -Xmn200m -XX:MaxMetaspaceSize=100m"
+      - "discovery.zen.ping.unicast.hosts=es_master1"
+      - node.master=false
+      - node.data=true
+      - node.ingest=true
+    networks:
+      - esnet
+  es_data2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    container_name: es_data2
+    environment:
+      - cluster.name=test_cluster
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms600m -Xmx600m -Xmn200m -XX:MaxMetaspaceSize=100m"
+      - "discovery.zen.ping.unicast.hosts=es_master1"
+      - node.master=false
+      - node.data=true
+      - node.ingest=true
+    networks:
+      - esnet
+  es_data3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    container_name: es_data3
+    environment:
+      - cluster.name=test_cluster
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms600m -Xmx600m -Xmn200m -XX:MaxMetaspaceSize=100m"
+      - "discovery.zen.ping.unicast.hosts=es_master1"
+      - node.master=false
+      - node.data=true
+      - node.ingest=true
+    networks:
+      - esnet
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.4
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_URL=http://es_master1:9200
+      - LOGGING_VERBOSE=true
+      - XPACK_SECURITY_ENABLED=false
+    ports:
+      - 5601:5601
+    networks:
+      - esnet
+
+networks:
+  esnet:
+    driver: bridge
+

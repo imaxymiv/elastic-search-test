@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Regression Suite" verbose="5">
+    <test name="Compare Docs Test">
+        <classes>
+            <class name="com.elastic.www.compareDocsSuite.CompareDocsTests"/>
+        </classes>
+    </test>
+    <test name="Mapping Test">
+        <classes>
+            <class name="com.elastic.www.mappingTestSuite.MappingTests"/>
+        </classes>
+    </test>
+    <test name="Response Format Test">
+        <classes>
+            <class name="com.elastic.www.responseFormatSuite.ResponseFormatTests"/>
+        </classes>
+    </test>
+    <test name="Search Doc Test">
+        <classes>
+            <class name="com.elastic.www.searchDocSuite.SearchDocTests"/>
+        </classes>
+    </test>
+    <test name="Store Doc Test">
+        <classes>
+            <class name="com.elastic.www.storeDocSuite.StoreDocTests"/>
+        </classes>
+    </test>
+</suite>

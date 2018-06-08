@@ -1,0 +1,58 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "health": {
+        "type": "string",
+        "title": "The Health Schema ",
+        "default": ""
+      },
+      "status": {
+        "type": "string",
+        "title": "The Status Schema ",
+        "default": ""
+      },
+      "index": {
+        "type": "string",
+        "title": "The Index Schema ",
+        "default": ""
+      },
+      "uuid": {
+        "type": "string",
+        "title": "The Uuid Schema ",
+        "default": ""
+      },
+      "pri": {
+        "type": "string",
+        "title": "The Pri Schema ",
+        "default": ""
+      },
+      "rep": {
+        "type": "string",
+        "title": "The Rep Schema ",
+        "default": ""
+      },
+      "docs.count": {
+        "type": "string",
+        "title": "The Docs.count Schema ",
+        "default": ""
+      },
+      "docs.deleted": {
+        "type": "string",
+        "title": "The Docs.deleted Schema ",
+        "default": ""
+      },
+      "store.size": {
+        "type": "string",
+        "title": "The Store.size Schema ",
+        "default": ""
+      },
+      "pri.store.size": {
+        "type": "string",
+        "title": "The Pri.store.size Schema ",
+        "default": ""
+      }
+    }
+  }
+}
