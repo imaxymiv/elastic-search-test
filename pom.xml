@@ -43,12 +43,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.aeonbits.owner</groupId>
-            <artifactId>owner</artifactId>
-            <version>${owner.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
@@ -97,6 +91,5 @@
             <version>RELEASE</version>
         </dependency>
     </dependencies>
-
 
 </project>
