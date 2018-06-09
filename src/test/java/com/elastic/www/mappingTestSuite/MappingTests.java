@@ -1,6 +1,5 @@
 package com.elastic.www.mappingTestSuite;
 
-import com.elastic.www.BaseTest;
 import com.elastic.www.dto.acknowledgedResourceResponse.Response;
 import com.elastic.www.dto.mappings.petIndexMapping.PetIndex;
 import org.testng.Assert;

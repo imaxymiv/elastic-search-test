@@ -4,9 +4,10 @@ import com.elastic.www.client.Configuration;
 import com.elastic.www.client.ResponseWrapper;
 import com.elastic.www.client.RestClient;
 import com.elastic.www.dto.pet.Pet;
-import com.elastic.www.dto.pet.Response.getIndexResponse.GetIndexResponse;
-import com.elastic.www.dto.pet.Response.putRequestResponse.PetResponse;
-import com.elastic.www.dto.pet.Response.searchRequestResponse.SearchQueryResponse;
+import com.elastic.www.dto.pet.response.getIndexResponse.GetIndexResponse;
+import com.elastic.www.dto.pet.response.putRequestResponse.PetResponse;
+import com.elastic.www.dto.pet.response.searchRequestResponse.SearchQueryResponse;
+import com.elastic.www.dto.pet.response.versionConflictResponse.VersionConflictResponse;
 import com.github.javafaker.Faker;
 
 import java.util.Map;
@@ -55,6 +56,10 @@ public class PetClient extends RestClient {
 
     public ResponseWrapper<GetIndexResponse> getCreatedDocWithVersion(String id, Map<String, String> queryParams) {
         return get(String.format(PUT_PATH, id), queryParams, GetIndexResponse.class);
+    }
+
+    public ResponseWrapper<VersionConflictResponse> getCreatedDocWithVersionConflict(String id, Map<String, String> queryParams) {
+        return get(String.format(PUT_PATH, id), queryParams, VersionConflictResponse.class);
     }
 
 }

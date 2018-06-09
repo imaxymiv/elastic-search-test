@@ -1,4 +1,4 @@
-package com.elastic.www.dto.pet.Response.getIndexResponse;
+package com.elastic.www.dto.pet.response.getIndexResponse;
 
 import lombok.Data;
 

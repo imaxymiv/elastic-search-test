@@ -2,8 +2,9 @@ package com.elastic.www.storeDocSuite;
 
 import com.elastic.www.BaseTest;
 import com.elastic.www.dto.pet.Pet;
-import com.elastic.www.dto.pet.Response.getIndexResponse.GetIndexResponse;
-import com.elastic.www.dto.pet.Response.putRequestResponse.PetResponse;
+import com.elastic.www.dto.pet.response.getIndexResponse.GetIndexResponse;
+import com.elastic.www.dto.pet.response.putRequestResponse.PetResponse;
+import com.elastic.www.dto.pet.response.versionConflictResponse.VersionConflictResponse;
 import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -54,5 +55,30 @@ public class StoreDocTests extends BaseTest {
                 .readEntity();
 
         Assert.assertEquals(3, petResponseWithVersion.get_version());
+    }
+
+    @Test
+    public void testVersioningConflict() {
+        Pet petObject = Pet.builder().build();
+        String id = faker.number().digits(3);
+
+        getPetClient()
+                .putPet(petObject, id)
+                .expectingStatusCode(201);
+        PetResponse petResponse = getPetClient().
+                putPet(petObject, id)
+                .expectingStatusCode(200)
+                .readEntity();
+
+        Map<String, String> versionQueryParam = new HashMap<>();
+        versionQueryParam.put("version", String.valueOf(petResponse.get_version() - 1));
+
+        VersionConflictResponse petResponseWithVersionConflict = getPetClient()
+                .getCreatedDocWithVersionConflict(id, versionQueryParam)
+                .expectingStatusCode(409)
+                .readEntity();
+
+        Assert.assertTrue(petResponseWithVersionConflict.getError().getRoot_cause().get(0).getType()
+                .equalsIgnoreCase("version_conflict_engine_exception"));
     }
 }

@@ -18,7 +18,7 @@ import static io.restassured.module.jsv.JsonSchemaValidatorSettings.settings;
 
 @Slf4j
 public abstract class RestClient {
-    protected Configuration configuration = defaultConfiguration();
+    private Configuration configuration = defaultConfiguration();
     private RequestSpecification requestSpecification;
 
     protected abstract Configuration defaultConfiguration();
@@ -43,13 +43,13 @@ public abstract class RestClient {
         response.then().log().all();
     }
 
-    public <F> ResponseWrapper<F> get(String path, Class<F> responseClass) {
+    protected <F> ResponseWrapper<F> get(String path, Class<F> responseClass) {
         Response response = given().spec(requestSpecification).get(path);
         logResponse(response);
         return new ResponseWrapper<>(response, responseClass);
     }
 
-    public <F> ResponseWrapper<F> get(String path, Map<String, String> queryParams, Class<F> responseClass) {
+    protected <F> ResponseWrapper<F> get(String path, Map<String, String> queryParams, Class<F> responseClass) {
         Response response = given().spec(requestSpecification).queryParams(queryParams).get(path);
         logResponse(response);
         return new ResponseWrapper<>(response, responseClass);
@@ -67,13 +67,13 @@ public abstract class RestClient {
         return new ResponseWrapper<>(response, responseClass);
     }
 
-    public <T, F> ResponseWrapper<F> put(String path, T payload, Class<F> responseClass) {
+    protected <T, F> ResponseWrapper<F> put(String path, T payload, Class<F> responseClass) {
         Response response = given().spec(requestSpecification).body(payload).put(path);
         logResponse(response);
         return new ResponseWrapper<>(response, responseClass);
     }
 
-    public <F> ResponseWrapper<F> delete(String path, Class<F> responseClass) {
+    protected <F> ResponseWrapper<F> delete(String path, Class<F> responseClass) {
         Response response = given().spec(requestSpecification).delete(path);
         logResponse(response);
         return new ResponseWrapper<>(response, responseClass);

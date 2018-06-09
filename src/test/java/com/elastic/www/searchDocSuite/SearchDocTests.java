@@ -2,7 +2,7 @@ package com.elastic.www.searchDocSuite;
 
 import com.elastic.www.BaseTest;
 import com.elastic.www.dto.pet.Pet;
-import com.elastic.www.dto.pet.Response.searchRequestResponse.SearchQueryResponse;
+import com.elastic.www.dto.pet.response.searchRequestResponse.SearchQueryResponse;
 import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.Test;
