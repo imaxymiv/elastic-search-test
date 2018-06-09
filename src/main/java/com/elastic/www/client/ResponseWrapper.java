@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2017 Nextiva, Inc. to Present.
- * All rights reserved.
- */
-
 package com.elastic.www.client;
 
 import io.restassured.response.Response;
